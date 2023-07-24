@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Car Form</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h3>Car Form</h3>
+        <form action="/saveCar" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="carName">Car Name</label>
+                <input type="text" class="form-control" id="carName" name="carName" required>
+            </div>
+            <div class="form-group">
+                <label for="carModel">Car Model</label>
+                <input type="text" class="form-control" id="carModel" name="carModel" required>
+            </div>
+            <div class="form-group">
+                <label for="carVariant">Car Variant</label>
+                <input type="text" class="form-control" id="carVariant" name="carVariant" required>
+            </div>
+            <div class="form-group">
+                <label for="carImage">Car Image</label>
+                <input type="file" class="form-control-file" id="carImage" name="carImage" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Car</button>
+        </form>
+
+        <h3 class="mt-5">All Cars</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Car Name</th>
+                    <th>Car Model</th>
+                    <th>Car Variant</th>
+                    <th>Car Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="car : ${cars}">
+                    <td th:text="${car.carName}"></td>
+                    <td th:text="${car.carModel}"></td>
+                    <td th:text="${car.carVariant}"></td>
+                    <td><img th:src="@{/path/to/designated/folder/__${car.carImagePath}__}" width="100"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
